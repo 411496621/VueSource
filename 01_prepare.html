@@ -8,11 +8,14 @@
 
 <div id="test">尚硅谷IT教育</div>
 
-<ul id="fragment_test">
-  <li>test1</li>
-  <li>test2</li>
-  <li>test3</li>
-</ul>
+<div id="demo">
+  <ul id="fragment_test">
+    <li>test1</li>
+    <li>test2</li>
+    <li>test3</li>
+  </ul>
+</div>
+
 
 
 <!--
@@ -25,6 +28,72 @@
 -->
 
 <script type="text/javascript">
+  // 1. [].slice.call(lis): 将伪数组转换为真数组
+/*  const lis = document.getElementsByTagName("li")
+  console.log(lis instanceof Array,lis.forEach)
+  // 將伪数组转换成真数组
+  const lis2= Array.prototype.slice.call(lis)
+  console.log(lis2 instanceof Array,lis2.forEach)
+  // 将伪数组转换成真数组
+  const lis3 = Array.from(lis)
+  console.log(lis3 instanceof Array,lis3.forEach)*/
+// node.nodeType: 得到节点类型
+/*const elementNode = document.getElementById('test')
+const attrNode = elementNode.getAttributeNode("id")
+const textNode = elementNode.firstChild
+console.log(elementNode.nodeType,attrNode.nodeType,textNode.nodeType)*/
+  
+// 3. Object.defineProperty(obj, propertyName, {}): 给对象添加属性(指定描述符)
+// 4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
+/*
+const p = {
+  firstName:"A",
+  lastName:"B"
+}  
+Object.defineProperty(p,"fullName",{
+  configurable:false,  //是否可以重新define
+  enumerable:true,    //是否可以枚举(for..in / keys())
+  get(){
+    return this.firstName +'-'+this.lastName
+  },
+  set(value){
+    const names = value.split('-')
+    this.firstName = names[0]
+    this.lastName = names[1]
+  }
+})
+  console.log(p.fullName)
+  p.firstName = 'C'
+  p.lastName = 'D'
+  console.log(p.fullName)
+  p.fullName = 'E-F'
+  console.log(p.firstName,p.lastName)
+  const keys =Object.keys(p)
+  console.log(keys)
+*/
+
+//  5. obj.hasOwnProperty(prop): 判断prop是否是obj自身的属性
+/*const obj= {
+  name:'kobe',
+  age:41
+}
+console.log(obj.hasOwnProperty('name'),obj.hasOwnProperty("toString"))*/
+
+// 6. DocumentFragment: 文档碎片(高效批量更新多个节点)
+const fragment = document.createDocumentFragment()
+const divNode = document.getElementById('demo')
+let child
+while (child = divNode.firstChild){ // 取出所有子节点 添加到fragment中
+  fragment.appendChild(child)   // 将div的子节点从div标签中删除, 让child节点添加成为fragment的子节点
+}
+const lis = Array.prototype.slice.call(fragment.childNodes[1].children)
+lis.forEach(li=>{
+  li.innerHTML = 'atguigu' // 批量更新li的内容  但不会更新界面
+})
+divNode.appendChild(fragment) // 将fragment添加到divNode中  一次性更新页面
+
+
+
 
 </script>
 </body>
