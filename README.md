@@ -105,3 +105,11 @@
 		2). 双向数据绑定的实现流程:
 	      	* 在解析v-model指令时, 给当前元素添加input监听
 	      	* 当input的value发生改变时, 将最新的值赋值给当前表达式所对应的data属性
+	      	
+	      	
+	resume script execution 恢复脚本执行
+	step over next function call 跳过下一个函数调用
+	step into next function call  进入下一个函数调用
+	step out of current function 跳出当前函数
+	Deactivate breakpoints 禁用断点
+	scope 范围      	

@@ -14,6 +14,23 @@
   2). 所有添加的属性都包含get/set方法
   3). 在get/set方法中去操作data中对应的属性
 -->
+<div id="test"></div>
 
 </body>
+<script type="text/javascript" src="./js/mvvm/mvvm.js"></script>
+<script type="text/javascript" src="./js/mvvm/compile.js"></script>
+<script type="text/javascript" src="./js/mvvm/observer.js"></script>
+<script type="text/javascript" src="./js/mvvm/watcher.js"></script>
+<script type="text/javascript">
+  const vm = new MVVM({
+    el:"#test",
+    data:{
+      name:'小明'
+    }
+  })
+  console.log(vm.name)
+  vm.name = "小王"
+  console.log(vm._data.name,vm.name)
+  console.log(vm)
+</script>
 </html>
